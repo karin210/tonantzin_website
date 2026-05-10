@@ -1,40 +1,12 @@
 import Image from "next/image";
+import Nav from "./components/Nav";
+import Experiences from "./components/Experiences";
 import styles from "./page.module.css";
 
 export default function Home(): React.JSX.Element {
   return (
     <>
-      <header className={styles.header}>
-        <nav
-          className={styles.nav}
-          aria-label="Navegación principal"
-        >
-          <a href="/" aria-label="Inicio — Tonantzin Cocina Mestiza">
-            <Image
-              src="/Tonantzin_logo_black.png"
-              alt="Tonantzin Cocina Mestiza"
-              width={200}
-              height={80}
-              className={styles.logo}
-              priority
-            />
-          </a>
-          <ul className={styles.navList}>
-            <li>
-              <a href="#nosotros">Nosotros</a>
-            </li>
-            <li>
-              <a href="#menu">Menú</a>
-            </li>
-            <li>
-              <a href="#reservaciones">Reservaciones</a>
-            </li>
-            <li>
-              <a href="#contacto">Contacto</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      <Nav />
 
       <main>
         <section className={styles.hero} aria-labelledby="hero-title">
@@ -77,6 +49,8 @@ export default function Home(): React.JSX.Element {
             </a>
           </div>
         </section>
+
+        <Experiences />
       </main>
     </>
   );
