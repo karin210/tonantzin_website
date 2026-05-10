@@ -1,0 +1,174 @@
+/* ── Header & Navigation ─────────────────────────── */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: clamp(0.75rem, 2vw, 1.25rem) clamp(1.25rem, 5vw, 3rem);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+.logo {
+  height: clamp(2.25rem, 4vw, 3rem);
+  width: auto;
+  /* invert the black logo for legibility over the dark hero */
+  filter: brightness(0) invert(1);
+}
+
+.navList {
+  display: flex;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.navList a {
+  color: var(--color-white);
+  font-size: clamp(0.6875rem, 1.1vw, 0.8125rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease;
+}
+
+.navList a:hover,
+.navList a:focus-visible {
+  opacity: 0.7;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.navList a:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ── Hero ────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  height: 100dvh;
+  min-height: 30rem;
+  overflow: hidden;
+}
+
+.heroImageWrapper {
+  position: absolute;
+  inset: 0;
+}
+
+/* Mobile-first: vertical image by default */
+.heroHorizontal {
+  display: none;
+}
+
+.heroVertical {
+  display: block;
+}
+
+/* Wide viewports: swap to horizontal image */
+@media (min-width: 640px) {
+  .heroHorizontal {
+    display: block;
+  }
+
+  .heroVertical {
+    display: none;
+  }
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.15) 50%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 clamp(1.25rem, 6vw, 5rem);
+  text-align: center;
+  color: var(--color-white);
+  gap: clamp(0.75rem, 2vh, 1.25rem);
+}
+
+.heroTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
+}
+
+.heroTitleMain {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(3.5rem, 13vw, 9rem);
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.heroTitleSub {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(0.9rem, 3vw, 2rem);
+  font-weight: 300;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.heroTagline {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  opacity: 0.9;
+  max-width: 42ch;
+  line-height: 1.7;
+  margin-top: clamp(0.25rem, 1vh, 0.5rem);
+}
+
+.heroButton {
+  display: inline-block;
+  margin-top: clamp(0.5rem, 1.5vh, 1rem);
+  padding: 0.875rem clamp(2rem, 5vw, 3.5rem);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  color: var(--color-white);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.6875rem, 1.1vw, 0.8125rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: background-color 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.heroButton:hover {
+  background-color: var(--color-white);
+  color: var(--color-foreground);
+  border-color: var(--color-white);
+}
+
+.heroButton:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 4px;
+  background-color: var(--color-white);
+  color: var(--color-foreground);
+}
