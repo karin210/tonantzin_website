@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Cormorant_Garamond } from "next/font/google";
+import { Geist, Geist_Mono, Cormorant_Garamond, Antonio } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,6 +19,12 @@ const cormorant = Cormorant_Garamond({
   style: ["normal", "italic"],
 });
 
+const antonio = Antonio({
+  variable: "--font-antonio",
+  subsets: ["latin"],
+  weight: ["300", "400"],
+});
+
 export const metadata: Metadata = {
   title: "Tonantzin Cocina Mestiza",
   description:
@@ -33,7 +39,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} ${antonio.variable}`}
     >
       <body>{children}</body>
     </html>

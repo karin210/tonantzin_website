@@ -1,4 +1,4 @@
-import styles from "./Experiences.module.css";
+import styles from "./Servicios.module.css";
 
 type Accent = "green" | "terracotta" | "gold";
 
@@ -28,9 +28,9 @@ const EXPERIENCES: readonly Experience[] = [
     accent: "terracotta",
   },
   {
-    id: "talleres",
-    eyebrow: "Talleres y catas",
-    title: "Experiencias",
+    id: "actividades",
+    eyebrow: "Actividades",
+    title: "Actividades",
     description:
       "Decoración de pasteles con manga pastelera, cata de mezcal y otras vivencias guiadas por nuestro equipo. Aprende, prueba y celebra la mesa mexicana.",
     accent: "gold",
@@ -45,19 +45,16 @@ const ACCENT_CLASS: Record<Accent, string> = {
 
 export default function Experiences(): React.JSX.Element {
   return (
-    <section
-      className={styles.section}
-      aria-labelledby="experiences-title"
-    >
+    <section className={styles.section} aria-labelledby="experiences-title">
       <div className={styles.intro}>
         <p className={styles.eyebrow}>Más allá de la mesa</p>
         <h2 id="experiences-title" className={styles.title}>
-          Experiencias
+          Servicios
         </h2>
         <p className={styles.lede}>
-          Nuestra cocina es solo el principio. Tonantzin también abre sus puertas
-          para reuniones, eventos privados y experiencias guiadas que celebran
-          la cultura mexicana.
+          Nuestra cocina es solo el principio. Tonantzin también abre sus
+          puertas para reuniones, eventos privados y experiencias guiadas que
+          celebran la cultura mexicana.
         </p>
       </div>
 

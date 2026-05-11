@@ -4,6 +4,16 @@
 
 ## 2026-05-11
 
+### Hero logo + Servicios refactor
+
+**Hero title → logo image.** Replaced the two `<span>` text lines (*Tonantzin* / *Cocina Mestiza*) inside `<h1>` with a `next/image` `<Image>` pointing to `Tonantzin_logo_black.png`. The image is inverted to white via `filter: brightness(0) invert(1)` and sized with `clamp(14rem, 55vw, 32rem)`. Removed `.heroTitleMain` and `.heroTitleSub` CSS classes; added `.heroLogo`.
+
+**Antonio font.** Added the `Antonio` Google Font (`--font-antonio`, weights 300/400) to `app/layout.tsx` for potential use in display contexts.
+
+**Experiences → Servicios.** Deleted the flat `app/components/Experiences.tsx` / `Experiences.module.css` and replaced them with a dedicated `app/components/Servicios/` folder (`Servicios.tsx` + `Servicios.module.css`). Section heading changed from *Experiencias* to **Servicios**; third card eyebrow/title changed from *Talleres y catas / Experiencias* to **Actividades / Actividades**. The triptych layout, CSS gradient placeholders, and *Próximamente* badges are unchanged.
+
+---
+
 ### Header — refactor Nav into Header component with hamburger menu
 
 Replaced the flat `Nav` component (`app/components/Nav.tsx` + `Nav.module.css`) with a dedicated `app/components/Header/` folder containing `Header.tsx` and `Header.module.css`.

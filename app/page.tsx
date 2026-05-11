@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Header from "./components/Header/Header";
-import Experiences from "./components/Experiences";
+import Servicios from "./components/Servicios/Servicios";
 import styles from "./page.module.css";
 
 export default function Home(): React.JSX.Element {
@@ -23,7 +23,9 @@ export default function Home(): React.JSX.Element {
           </div>
 
           {/* Horizontal crop — shown on wide viewports */}
-          <div className={`${styles.heroImageWrapper} ${styles.heroHorizontal}`}>
+          <div
+            className={`${styles.heroImageWrapper} ${styles.heroHorizontal}`}
+          >
             <Image
               src="/Tonantzin_terraza_1_horizontal.jpg"
               alt="Terraza de Tonantzin Cocina Mestiza iluminada con luces y decoración floral"
@@ -38,8 +40,14 @@ export default function Home(): React.JSX.Element {
 
           <div className={styles.heroContent}>
             <h1 id="hero-title" className={styles.heroTitle}>
-              <span className={styles.heroTitleMain}>Tonantzin</span>
-              <span className={styles.heroTitleSub}>Cocina Mestiza</span>
+              <Image
+                src="/Tonantzin_logo_black.png"
+                alt="Tonantzin Cocina Mestiza"
+                width={600}
+                height={240}
+                className={styles.heroLogo}
+                priority
+              />
             </h1>
             <p className={styles.heroTagline}>
               Una experiencia culinaria que celebra las raíces de México
@@ -50,7 +58,7 @@ export default function Home(): React.JSX.Element {
           </div>
         </section>
 
-        <Experiences />
+        <Servicios />
       </main>
     </>
   );
