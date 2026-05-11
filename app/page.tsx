@@ -1,12 +1,12 @@
 import Image from "next/image";
-import Nav from "./components/Nav";
+import Header from "./components/Header/Header";
 import Experiences from "./components/Experiences";
 import styles from "./page.module.css";
 
 export default function Home(): React.JSX.Element {
   return (
     <>
-      <Nav />
+      <Header />
 
       <main>
         <section className={styles.hero} aria-labelledby="hero-title">

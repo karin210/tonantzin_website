@@ -2,6 +2,24 @@
 
 ---
 
+## 2026-05-11
+
+### Header — refactor Nav into Header component with hamburger menu
+
+Replaced the flat `Nav` component (`app/components/Nav.tsx` + `Nav.module.css`) with a dedicated `app/components/Header/` folder containing `Header.tsx` and `Header.module.css`.
+
+**What changed:**
+- Added the restaurant logo (`Tonantzin_logo_black.png`) as a linked `<Image>` in the header.
+- Added an animated hamburger button for mobile with three-bar ↔ X transition via CSS classes (`barTop`, `barMid`, `barBot`).
+- Added a full-screen backdrop overlay when the mobile menu is open; clicking it closes the menu.
+- Scroll lock on `document.body` while mobile menu is open (prevents background scroll).
+- Renamed the dropdown trigger from *Experiencias* to **Servicios**; third sub-item renamed from *Talleres y Catas* to **Actividades**.
+- Added two new top-level nav links: **Reservaciones** and **Contacto**.
+- All interactive elements remain accessible: `aria-expanded`, `aria-controls`, `aria-haspopup`, Escape-to-close, click-outside-to-close.
+- `app/page.tsx` updated to import `Header` instead of `Nav`.
+
+---
+
 ## 2026-05-10
 
 ### Experiencias — nav dropdown + triptych section
