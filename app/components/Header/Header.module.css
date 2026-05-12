@@ -17,8 +17,9 @@
 }
 
 .logo {
-  height: clamp(2.25rem, 4vw, 3rem);
+  height: clamp(2.5rem, 4vw, 3.7rem);
   width: auto;
+  aspect-ratio: 73/43;
   filter: brightness(0) invert(1);
 }
 
@@ -294,5 +295,12 @@
     white-space: normal;
     font-size: 0.875rem;
     border-bottom: none;
+  }
+
+  .navList .reservar {
+    display: inline-block;
+    width: fit-content;
+    padding: 0.6rem 1.4rem;
+    margin-top: 0.25rem;
   }
 }

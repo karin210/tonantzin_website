@@ -39,16 +39,14 @@ export default function Home(): React.JSX.Element {
           <div className={styles.heroOverlay} aria-hidden="true" />
 
           <div className={styles.heroContent}>
-            <h1 id="hero-title" className={styles.heroTitle}>
-              <Image
-                src="/Tonantzin_logo_black.png"
-                alt="Tonantzin Cocina Mestiza"
-                width={600}
-                height={240}
-                className={styles.heroLogo}
-                priority
-              />
-            </h1>
+            <Image
+              src="/Tonantzin_logo_black.png"
+              alt="Tonantzin Cocina Mestiza"
+              width={600}
+              height={240}
+              className={styles.heroLogo}
+              priority
+            />
             <p className={styles.heroTagline}>
               Una experiencia culinaria que celebra las raíces de México
             </p>

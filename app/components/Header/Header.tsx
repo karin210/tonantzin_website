@@ -140,11 +140,6 @@ export default function Header(): React.JSX.Element {
               Reservaciones
             </a>
           </li>
-          <li>
-            <a href="#contacto" onClick={closeAll}>
-              Contacto
-            </a>
-          </li>
         </ul>
       </nav>
     </header>
