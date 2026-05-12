@@ -92,8 +92,8 @@ export default function Header(): React.JSX.Element {
           className={`${styles.navList} ${menuOpen ? styles.navListOpen : ""}`}
         >
           <li>
-            <a href="#nosotros" onClick={closeAll}>
-              Nosotros
+            <a href="#reservaciones" onClick={closeAll}>
+              Reservaciones
             </a>
           </li>
           <li>
@@ -101,6 +101,7 @@ export default function Header(): React.JSX.Element {
               Menú
             </a>
           </li>
+
           <li className={styles.dropdown} ref={dropdownRef}>
             <button
               type="button"
@@ -135,9 +136,12 @@ export default function Header(): React.JSX.Element {
               </li>
             </ul>
           </li>
+          <a href="#nosotros" onClick={closeAll}>
+            Nosotros
+          </a>
           <li>
-            <a href="#reservaciones" onClick={closeAll}>
-              Reservaciones
+            <a href="#nosotros" onClick={closeAll}>
+              Trabaja con nosotros
             </a>
           </li>
         </ul>

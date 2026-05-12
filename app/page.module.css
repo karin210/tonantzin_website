@@ -10,6 +10,7 @@
 .heroImageWrapper {
   position: absolute;
   inset: 0;
+  filter: contrast(1.1);
 }
 
 /* Mobile-first: vertical image by default */
@@ -44,9 +45,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background:
-    radial-gradient(ellipse at top, #00000096, transparent),
-    radial-gradient(ellipse at bottom, #00000096, transparent);
+  background: linear-gradient(178deg, #000000b0 55%, #0000);
+  /*background-color: #0000007a;*/
   height: 100%;
   padding: 0 clamp(1.25rem, 6vw, 5rem);
   text-align: center;
@@ -99,7 +99,12 @@
 }
 
 .heroButton:hover {
-  background-color: var(--color-white);
+  background: linear-gradient(
+    135deg,
+    #a27a0499 0%,
+    #e6b00099 55%,
+    #a27a0499 100%
+  );
   color: var(--color-foreground);
   border-color: var(--color-white);
   box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.65);
