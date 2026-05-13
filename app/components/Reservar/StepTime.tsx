@@ -11,6 +11,7 @@ function useDragScroll(ref: React.RefObject<HTMLUListElement | null>) {
     let dragging = false;
 
     function onPointerDown(e: PointerEvent) {
+      if (e.pointerType === "touch") return;
       dragging = true;
       startY = e.clientY;
       startScrollTop = el!.scrollTop;
@@ -28,6 +29,10 @@ function useDragScroll(ref: React.RefObject<HTMLUListElement | null>) {
       dragging = false;
       el!.releasePointerCapture(e.pointerId);
       el!.style.cursor = "";
+      el!.scrollTo({
+        top: Math.round(el!.scrollTop / ITEM_HEIGHT) * ITEM_HEIGHT,
+        behavior: "smooth",
+      });
     }
 
     el.addEventListener("pointerdown", onPointerDown);
@@ -44,7 +49,7 @@ function useDragScroll(ref: React.RefObject<HTMLUListElement | null>) {
   }, [ref]);
 }
 
-const HOURS = [13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
+const HOURS = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
 const MINUTES = ["00", "15", "30", "45"];
 const VOID_COUNT = 2;
 const ITEM_HEIGHT = 44; // px — must match CSS
@@ -71,8 +76,6 @@ export default function StepTime({ initialTime, onComplete }: Props): React.JSX.
 
   const hourContainerRef = useRef<HTMLUListElement>(null);
   const minuteContainerRef = useRef<HTMLUListElement>(null);
-  const hourItemRefs = useRef<(HTMLLIElement | null)[]>([]);
-  const minuteItemRefs = useRef<(HTMLLIElement | null)[]>([]);
 
   // Scroll drums to initial position before first paint
   useLayoutEffect(() => {
@@ -86,49 +89,27 @@ export default function StepTime({ initialTime, onComplete }: Props): React.JSX.
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // IntersectionObserver tracks which item is centered in each drum
+  // Scroll event tracks which item is centered — works on both touch and mouse
   useEffect(() => {
-    if (!hourContainerRef.current) return;
-    const items = hourItemRefs.current.filter((el): el is HTMLLIElement => el !== null);
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const h = Number(entry.target.textContent?.trim());
-            if (!isNaN(h) && HOURS.includes(h)) setCurrentHour(h);
-          }
-        });
-      },
-      {
-        root: hourContainerRef.current,
-        rootMargin: `-${ITEM_HEIGHT * 2}px 0px -${ITEM_HEIGHT * 2}px 0px`,
-        threshold: 1.0,
-      },
-    );
-    items.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const el = hourContainerRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const idx = Math.max(0, Math.min(Math.round(el.scrollTop / ITEM_HEIGHT), HOURS.length - 1));
+      setCurrentHour(HOURS[idx]);
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    if (!minuteContainerRef.current) return;
-    const items = minuteItemRefs.current.filter((el): el is HTMLLIElement => el !== null);
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const m = entry.target.textContent?.trim() ?? "";
-            if (MINUTES.includes(m)) setCurrentMinute(m);
-          }
-        });
-      },
-      {
-        root: minuteContainerRef.current,
-        rootMargin: `-${ITEM_HEIGHT * 2}px 0px -${ITEM_HEIGHT * 2}px 0px`,
-        threshold: 1.0,
-      },
-    );
-    items.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const el = minuteContainerRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const idx = Math.max(0, Math.min(Math.round(el.scrollTop / ITEM_HEIGHT), MINUTES.length - 1));
+      setCurrentMinute(MINUTES[idx]);
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
   useDragScroll(hourContainerRef);
@@ -142,7 +123,7 @@ export default function StepTime({ initialTime, onComplete }: Props): React.JSX.
       <h2 id="step-time-title" className={styles.title}>
         Elige una hora
       </h2>
-      <p className={styles.subtitle}>Horario disponible: 13:00 – 22:00</p>
+      <p className={styles.subtitle}>Horario disponible: 9:00 – 22:00</p>
 
       <div className={styles.drumsWrapper}>
         {/* Hour drum */}
@@ -158,12 +139,9 @@ export default function StepTime({ initialTime, onComplete }: Props): React.JSX.
             {Array.from({ length: VOID_COUNT }, (_, i) => (
               <li key={`hv-a-${i}`} className={styles.void} aria-hidden="true" />
             ))}
-            {HOURS.map((h, i) => (
+            {HOURS.map((h) => (
               <li
                 key={h}
-                ref={(el) => {
-                  hourItemRefs.current[i] = el;
-                }}
                 className={[
                   styles.drumItem,
                   h === currentHour ? styles.drumItemActive : null,
@@ -200,12 +178,9 @@ export default function StepTime({ initialTime, onComplete }: Props): React.JSX.
             {Array.from({ length: VOID_COUNT }, (_, i) => (
               <li key={`mv-a-${i}`} className={styles.void} aria-hidden="true" />
             ))}
-            {MINUTES.map((m, i) => (
+            {MINUTES.map((m) => (
               <li
                 key={m}
-                ref={(el) => {
-                  minuteItemRefs.current[i] = el;
-                }}
                 className={[
                   styles.drumItem,
                   m === currentMinute ? styles.drumItemActive : null,

@@ -4,6 +4,22 @@
 
 ## 2026-05-13
 
+### StepTime — mobile drum fix
+
+Replaced `IntersectionObserver` with `scroll` event listeners and guarded touch events in `useDragScroll` to fix drum behavior on mobile devices.
+
+**Root causes.** Two bugs combined to break the drums on phone: (1) `useDragScroll` called `el.setPointerCapture(e.pointerId)` for all pointer types including `'touch'`, which hijacked the browser's native touch scroll and prevented `scroll-snap-type: y mandatory` from firing; (2) `IntersectionObserver` with `threshold: 1.0` requires an item to be fully within the 44 px center zone — sub-pixel rendering differences on mobile meant items were never exactly 100 % visible, so the active highlight never updated.
+
+**Fix — touch guard.** Added `if (e.pointerType === "touch") return;` at the top of `onPointerDown` in `useDragScroll`. Touch scrolls are now handled entirely by the browser's native scroll-snap; the hook only kicks in for mouse/pen drags.
+
+**Fix — snap on mouse release.** Added `el.scrollTo({ top: Math.round(el.scrollTop / ITEM_HEIGHT) * ITEM_HEIGHT, behavior: "smooth" })` in `onPointerUp` so mouse drags also land on a clean item boundary after release.
+
+**Fix — scroll events replace IntersectionObserver.** Both `useEffect` blocks that created `IntersectionObserver` instances were removed. Replaced with passive `scroll` event listeners that compute the centred index with `Math.round(el.scrollTop / ITEM_HEIGHT)`, clamped to the array bounds. This is reliable on all browsers and pointer types. Removed the now-unused `hourItemRefs` and `minuteItemRefs` refs and their JSX `ref=` callbacks.
+
+**Schedule correction.** `HOURS` extended from `[13..22]` to `[9..22]` and subtitle updated to "9:00 – 22:00" to reflect the actual opening hours.
+
+---
+
 ### MenuEstacional — gradient background + responsive layout
 
 **Warm burnt-ochre gradient.** Replaced the flat `background: #1c1712` on `.section` with a `radial-gradient` centered above the section (`ellipse 130% 60% at 50% 0%`). The gradient sweeps from `#4a2410` (dark burnt ochre) through `#251309` to the existing near-black base, giving the section a candlelit warmth without altering any text or card styles.
