@@ -92,9 +92,9 @@ export default function Header(): React.JSX.Element {
           className={`${styles.navList} ${menuOpen ? styles.navListOpen : ""}`}
         >
           <li>
-            <a href="#reservaciones" onClick={closeAll}>
+            <Link href="/reservar" onClick={closeAll}>
               Reservaciones
-            </a>
+            </Link>
           </li>
           <li>
             <a href="#menu" onClick={closeAll}>

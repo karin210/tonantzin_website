@@ -2,6 +2,42 @@
 
 ---
 
+## 2026-05-13
+
+### MenuEstacional — gradient background + responsive layout
+
+**Warm burnt-ochre gradient.** Replaced the flat `background: #1c1712` on `.section` with a `radial-gradient` centered above the section (`ellipse 130% 60% at 50% 0%`). The gradient sweeps from `#4a2410` (dark burnt ochre) through `#251309` to the existing near-black base, giving the section a candlelit warmth without altering any text or card styles.
+
+**Responsive `.body` padding.** Replaced `padding: 10%` with `clamp()`-based shorthand (`clamp(1rem, 5vw, 3rem) clamp(1.5rem, 10vw, 8rem)`) so horizontal and vertical padding both scale fluidly with the viewport.
+
+**Fluid stacking layout.** Added `flex-wrap: wrap`, `gap: clamp(1.5rem, 4vw, 3rem)`, and `align-items: flex-start` to `.body`. Added `flex: 1 1 min(100%, 22rem)` to both `.featuredCard` and `.favorites`. The two asides now sit side by side when combined content width allows (~44 rem+) and stack to full width on smaller screens — no breakpoint needed.
+
+---
+
+### Reservation flow — `/reservar`
+
+Added a complete multi-step reservation experience at the `/reservar` route, inspired by the scroll-drum and progress-line patterns from the Pink project, adapted to Tonantzin's dark fine-dining aesthetic.
+
+**Route & orchestrator.** `app/reservar/page.tsx` is a server component that renders the `Header` and the `"use client"` `ReservationFlow` orchestrator. All step state (`name`, `guests`, `date`, `time`, `place`) lives in the orchestrator; each step receives only its slice of data plus an `onComplete` callback. A `key={currentStep}` on the step wrapper triggers a CSS slide-in animation (`stepEnter`) on every transition without a JS animation library.
+
+**Vertical progress timeline** (`ProgressTimeline`). Fixed to the right edge on desktop (200 px wide); uses `flex-direction: row-reverse` so node circles sit flush to the edge with right-aligned labels extending inward. Connector lines between nodes fill with gold as steps are completed. Node states: dim ring (pending) → gold ring + ambient glow (active) → filled gold + animated checkmark SVG (completed). Completed nodes are clickable — users can jump back and edit any earlier step. On ≤768 px the timeline collapses to a horizontal dot bar that sits below the fixed header.
+
+**Step 1 — Nombre** (`StepName`). Minimal underline text input styled in Cormorant Garamond; border turns gold on focus. Continue button disabled until the field is non-empty; Enter key submits.
+
+**Step 2 — Comensales** (`StepGuests`). Circular ±1 buttons with gold hover fill. Count displayed in a large Cormorant numeral. Maximum enforced at 8; minimum at 1.
+
+**Step 3 — Fecha** (`StepCalendar`). Proper Monday-first 7-column grid; offset calculated from `(getDay() + 6) % 7`. Past days disabled and dimmed; today highlighted with a gold border; the currently selected day fills gold. Month navigation prevents going before the current month. Clicking a date auto-advances to the next step.
+
+**Step 4 — Hora** (`StepTime`). Dual scroll drums (hours 13–22, minutes 00/15/30/45) built with `scroll-snap-type: y mandatory` + IntersectionObserver, mirroring the Pink project's approach. A CSS mask gradient fades items at the drum edges so only the centred item reads clearly. A `useLayoutEffect` pre-scrolls each drum to a previously selected time on re-entry. A live `aria-live` preview shows the current selection; a Continuar button confirms.
+
+**Step 5 — Lugar** (`StepPlace`). Two full-bleed image cards — *Terraza* (`Tonantzin_terraza_1_horizontal.jpg`) and *Interior* (`adobe_wall_1.jpg`) — each with a darkening overlay and an "Elegir" pill that fills gold on hover. Clicking either card auto-advances.
+
+**Step 6 — Confirmación** (`StepSuccess`). Animated SVG draw-on circle and checkmark (CSS `stroke-dashoffset` animation). Full reservation summary rendered as a `<dl>`. "Volver al inicio" link styled as the shared ghost-gold CTA button.
+
+**Navigation updates.** "Reservaciones" in the `Header` nav and "Reservar Mesa" in the homepage hero CTA both now route to `/reservar` instead of `#reservaciones`.
+
+---
+
 ## 2026-05-11
 
 ### Hero logo + Servicios refactor

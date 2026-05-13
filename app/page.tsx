@@ -51,7 +51,7 @@ export default function Home(): React.JSX.Element {
             <p className={styles.heroTagline}>
               Una experiencia culinaria que celebra las raíces de México
             </p>
-            <a href="#reservaciones" className={styles.heroButton}>
+            <a href="/reservar" className={styles.heroButton}>
               Reservar Mesa
             </a>
           </div>

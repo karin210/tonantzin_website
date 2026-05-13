@@ -1,0 +1,198 @@
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.875rem, 2vw, 1.25rem);
+}
+
+.eyebrow {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: clamp(0.5625rem, 0.85vw, 0.6875rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin: 0;
+}
+
+.title {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2.5rem, 5.5vw, 4rem);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  line-height: 1.05;
+  color: #f0ece4;
+  margin: 0;
+}
+
+.subtitle {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  color: rgba(240, 236, 228, 0.6);
+  margin: 0;
+}
+
+/* ── Drums wrapper ─────────────────────────────────── */
+
+.drumsWrapper {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 0.5rem;
+  border: 1px solid rgba(201, 168, 76, 0.14);
+  background: rgba(0, 0, 0, 0.12);
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 4vw, 2rem);
+}
+
+/* ── Drum column ───────────────────────────────────── */
+
+.drumCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.drumLabel {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240, 236, 228, 0.28);
+  height: 1rem; /* keeps label row fixed height */
+  display: flex;
+  align-items: center;
+}
+
+/* ── Scroll drum ───────────────────────────────────── */
+
+.drum {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* 5 items visible (2 void + center + 2 void) */
+  height: 220px; /* 5 × 44px */
+  width: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  display: flex;
+  flex-direction: column;
+  /* Fade items at top/bottom edges — center stands out */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.5) 18%,
+    black 32%,
+    black 68%,
+    rgba(0, 0, 0, 0.5) 82%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.5) 18%,
+    black 32%,
+    black 68%,
+    rgba(0, 0, 0, 0.5) 82%,
+    transparent 100%
+  );
+}
+
+.drum::-webkit-scrollbar {
+  display: none;
+}
+
+.void {
+  height: 44px; /* ITEM_HEIGHT */
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  pointer-events: none;
+}
+
+.drumItem {
+  height: 44px; /* ITEM_HEIGHT */
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: center;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 300;
+  color: rgba(240, 236, 228, 0.28);
+  user-select: none;
+  cursor: default;
+  transition: color 0.15s ease, font-size 0.15s ease;
+}
+
+.drumItemActive {
+  font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+  font-weight: 400;
+  color: #f0ece4;
+}
+
+/* ── Colon column ──────────────────────────────────── */
+
+.colonCol {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 clamp(0.5rem, 2vw, 1rem);
+}
+
+.colon {
+  height: 220px; /* same as drum so it centers naturally */
+  display: flex;
+  align-items: center;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 300;
+  color: rgba(240, 236, 228, 0.3);
+  line-height: 1;
+}
+
+/* ── Time preview ──────────────────────────────────── */
+
+.preview {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: rgba(240, 236, 228, 0.45);
+  text-align: center;
+  margin: 0;
+}
+
+/* ── Button ────────────────────────────────────────── */
+
+.btn {
+  align-self: flex-start;
+  padding: 0.75rem clamp(2rem, 5vw, 3rem);
+  border: 1px solid rgba(201, 168, 76, 0.55);
+  background: transparent;
+  color: var(--color-gold);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.5625rem, 0.9vw, 0.6875rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.btn:hover {
+  background: var(--color-gold);
+  color: #1c1712;
+  border-color: var(--color-gold);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 4px;
+}

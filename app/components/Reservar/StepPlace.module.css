@@ -1,0 +1,127 @@
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.eyebrow {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: clamp(0.5625rem, 0.85vw, 0.6875rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin: 0;
+}
+
+.title {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2.5rem, 5.5vw, 4rem);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  line-height: 1.05;
+  color: #f0ece4;
+  margin: 0;
+}
+
+/* ── Cards ─────────────────────────────────────────── */
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.cardItem {
+  flex: 1 1 min(100%, 200px);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(201, 168, 76, 0.14);
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.25s ease;
+}
+
+.card:hover {
+  border-color: rgba(201, 168, 76, 0.45);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+/* ── Image ─────────────────────────────────────────── */
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 50%, rgba(28, 23, 18, 0.75));
+  transition: opacity 0.25s ease;
+}
+
+.card:hover .overlay {
+  opacity: 0.7;
+}
+
+/* ── Card body ─────────────────────────────────────── */
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: clamp(0.875rem, 2vw, 1.25rem);
+  border-top: 1px solid rgba(201, 168, 76, 0.12);
+  background: rgba(0, 0, 0, 0.15);
+  align-items: flex-start;
+}
+
+.placeLabel {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #f0ece4;
+}
+
+.placeDesc {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 0.6875rem;
+  color: rgba(240, 236, 228, 0.4);
+  letter-spacing: 0.05em;
+}
+
+.elegirBtn {
+  margin-top: 0.5rem;
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid rgba(201, 168, 76, 0.5);
+  color: var(--color-gold);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 0.5625rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.card:hover .elegirBtn {
+  background: var(--color-gold);
+  color: #1c1712;
+}

@@ -1,0 +1,51 @@
+/* ── Page ──────────────────────────────────────────── */
+
+.page {
+  min-height: 100dvh;
+  background: #1c1712;
+  color: #f0ece4;
+  position: relative;
+}
+
+/* ── Content area ──────────────────────────────────── */
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: clamp(5.5rem, 12vw, 8rem) clamp(1.5rem, 6vw, 4rem);
+  /* Reserve space on the right for the vertical timeline */
+  padding-right: calc(clamp(1.5rem, 6vw, 4rem) + 200px);
+}
+
+/* ── Step wrapper — key change triggers animation ──── */
+
+.stepWrapper {
+  width: 100%;
+  max-width: 520px;
+  animation: stepEnter 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes stepEnter {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── Mobile ────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .content {
+    /* No right padding for timeline (it collapses to top bar) */
+    padding-right: clamp(1.5rem, 6vw, 4rem);
+    /* Top padding clears header + mobile timeline bar */
+    padding-top: calc(clamp(4rem, 10vw, 6rem) + 96px);
+    align-items: flex-start;
+  }
+}
