@@ -1,6 +1,49 @@
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import styles from "./StepTime.module.css";
 
+function useDragScroll(ref: React.RefObject<HTMLUListElement | null>) {
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    let startY = 0;
+    let startScrollTop = 0;
+    let dragging = false;
+
+    function onPointerDown(e: PointerEvent) {
+      dragging = true;
+      startY = e.clientY;
+      startScrollTop = el!.scrollTop;
+      el!.setPointerCapture(e.pointerId);
+      el!.style.cursor = "grabbing";
+    }
+
+    function onPointerMove(e: PointerEvent) {
+      if (!dragging) return;
+      el!.scrollTop = startScrollTop + (startY - e.clientY);
+    }
+
+    function onPointerUp(e: PointerEvent) {
+      if (!dragging) return;
+      dragging = false;
+      el!.releasePointerCapture(e.pointerId);
+      el!.style.cursor = "";
+    }
+
+    el.addEventListener("pointerdown", onPointerDown);
+    el.addEventListener("pointermove", onPointerMove);
+    el.addEventListener("pointerup", onPointerUp);
+    el.addEventListener("pointercancel", onPointerUp);
+
+    return () => {
+      el.removeEventListener("pointerdown", onPointerDown);
+      el.removeEventListener("pointermove", onPointerMove);
+      el.removeEventListener("pointerup", onPointerUp);
+      el.removeEventListener("pointercancel", onPointerUp);
+    };
+  }, [ref]);
+}
+
 const HOURS = [13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
 const MINUTES = ["00", "15", "30", "45"];
 const VOID_COUNT = 2;
@@ -87,6 +130,9 @@ export default function StepTime({ initialTime, onComplete }: Props): React.JSX.
     items.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
+
+  useDragScroll(hourContainerRef);
+  useDragScroll(minuteContainerRef);
 
   const formattedTime = `${currentHour}:${currentMinute}`;
 
