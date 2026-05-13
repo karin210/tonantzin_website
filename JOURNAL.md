@@ -38,6 +38,32 @@ Added a complete multi-step reservation experience at the `/reservar` route, ins
 
 ---
 
+### MenuEstacional — featuredBadge responsive scaling
+
+`font-size` ceiling raised from `0.6875rem` to `1rem` and `padding` converted to `clamp()` values so the badge grows proportionally on wide viewports instead of capping out too early.
+
+---
+
+### StepTime — drag-to-scroll on drums
+
+Added a `useDragScroll` hook that attaches `pointerdown / pointermove / pointerup / pointercancel` listeners to each drum `<ul>`. On `pointerdown` the pointer is captured and the start `scrollTop` is recorded; `pointermove` updates `scrollTop` in real time; `pointerup` releases the capture. The cursor switches to `grabbing` during the drag. Scroll-snap still fires on release so the selection behavior is unchanged. CSS updated: `cursor: grab` on `.drum`, `cursor: inherit` on `.drumItem` (previously `default`, which would override the parent).
+
+---
+
+### Reservation flow — round of UX polish
+
+**Mobile progress timeline values.** The horizontal dot bar now shows user-entered values below each node instead of hiding all labels. Completed steps display a short serif-italic value ("Juan", "2 pers.", "13 May", "14:00", "Terraza"); the active step shows its category label in tiny gold as a hint. Two spans per value (`.valueLong` / `.valueShort`) swap visibility via media query — `getShortValue` formatters on `name` (first word only) and `guests` ("N pers.") prevent overflow in the narrow columns. Bar height changed from fixed `48px` to `height: auto` with padding; content `padding-top` on mobile bumped from `+ 96px` to `+ 110px` to compensate.
+
+**"Editar reservación" button on success screen.** `StepSuccess` now accepts an `onEdit` callback. A secondary ghost button sits beside "Volver al inicio" in a flex `.actions` row; clicking it calls `handleEdit()` in `ReservationFlow`, which resets `currentStep` to `"name"` with all previously entered data still in state so the user can walk through and change only what they need.
+
+**Hydration mismatch fix — StepName input.** Removed `autoFocus` from the `<input>` JSX (which caused the server to emit `autofocus=""` while a password-manager extension injected `fdprocessedid` before React hydrated, producing a guaranteed mismatch). Replaced with `useRef` + `useEffect(() => inputRef.current?.focus(), [])` so focus is applied programmatically after hydration. Added `suppressHydrationWarning` on the input to silence any remaining extension-injected attribute warnings.
+
+**StepPlace — responsive card layout.**
+- *Large screens (≥ 1024 px):* `flex-wrap: nowrap` forces both cards side by side; `stepWrapper` max-width widened from `520px` to `640px` so each card reaches ~310 px. Image height pinned to `333px` (the exact pixel height the portrait-ratio image had at the old 250 px card width) so the cards grow wider without growing taller.
+- *Small screens (≤ 600 px):* Each `.card` is given `height: 55vh` with `.imageWrapper { flex: 1; aspect-ratio: unset }` so the photo fills all space above the fixed-height card body. At 55 vh the first card fills most of the viewport and the second peeks from below, signalling that there is a second option.
+
+---
+
 ## 2026-05-11
 
 ### Hero logo + Servicios refactor
