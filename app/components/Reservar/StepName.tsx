@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./StepName.module.css";
 
 type Props = {
@@ -8,6 +8,11 @@ type Props = {
 
 export default function StepName({ initialValue, onComplete }: Props): React.JSX.Element {
   const [value, setValue] = useState(initialValue);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   function handleSubmit(): void {
     const trimmed = value.trim();
@@ -31,6 +36,7 @@ export default function StepName({ initialValue, onComplete }: Props): React.JSX
           Nombre completo
         </label>
         <input
+          ref={inputRef}
           id="guest-name"
           type="text"
           className={styles.input}
@@ -39,7 +45,7 @@ export default function StepName({ initialValue, onComplete }: Props): React.JSX
           onKeyDown={handleKeyDown}
           placeholder="Tu nombre"
           autoComplete="given-name"
-            autoFocus
+          suppressHydrationWarning
         />
       </div>
 

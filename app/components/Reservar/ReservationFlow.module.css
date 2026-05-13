@@ -27,6 +27,12 @@
   animation: stepEnter 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+@media (min-width: 1024px) {
+  .stepWrapper {
+    max-width: 640px;
+  }
+}
+
 @keyframes stepEnter {
   from {
     opacity: 0;
@@ -45,7 +51,7 @@
     /* No right padding for timeline (it collapses to top bar) */
     padding-right: clamp(1.5rem, 6vw, 4rem);
     /* Top padding clears header + mobile timeline bar */
-    padding-top: calc(clamp(4rem, 10vw, 6rem) + 96px);
+    padding-top: calc(clamp(4rem, 10vw, 6rem) + 110px);
     align-items: flex-start;
   }
 }

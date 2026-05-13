@@ -64,6 +64,10 @@ export default function ReservationFlow(): React.JSX.Element {
     if (clickIndex < curIndex) setCurrentStep(step);
   }
 
+  function handleEdit(): void {
+    setCurrentStep("name");
+  }
+
   return (
     <main className={styles.page}>
       <div className={styles.content}>
@@ -81,7 +85,7 @@ export default function ReservationFlow(): React.JSX.Element {
             <StepTime initialTime={data.time} onComplete={handleTime} />
           )}
           {currentStep === "place" && <StepPlace onComplete={handlePlace} />}
-          {currentStep === "success" && <StepSuccess data={data} />}
+          {currentStep === "success" && <StepSuccess data={data} onEdit={handleEdit} />}
         </div>
       </div>
 

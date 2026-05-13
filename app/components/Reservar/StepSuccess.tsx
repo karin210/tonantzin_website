@@ -3,15 +3,29 @@ import styles from "./StepSuccess.module.css";
 import type { ReservationData } from "./ReservationFlow";
 
 const MONTHS = [
-  "enero", "febrero", "marzo", "abril", "mayo", "junio",
-  "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
+  "enero",
+  "febrero",
+  "marzo",
+  "abril",
+  "mayo",
+  "junio",
+  "julio",
+  "agosto",
+  "septiembre",
+  "octubre",
+  "noviembre",
+  "diciembre",
 ];
 
 type Props = {
   data: ReservationData;
+  onEdit: () => void;
 };
 
-export default function StepSuccess({ data }: Props): React.JSX.Element {
+export default function StepSuccess({
+  data,
+  onEdit,
+}: Props): React.JSX.Element {
   const dateStr = data.date
     ? `${data.date.getDate()} de ${MONTHS[data.date.getMonth()]} de ${data.date.getFullYear()}`
     : "";
@@ -75,9 +89,14 @@ export default function StepSuccess({ data }: Props): React.JSX.Element {
         </div>
       </dl>
 
-      <Link href="/" className={styles.homeLink}>
-        Volver al inicio
-      </Link>
+      <div className={styles.actions}>
+        <Link href="/" className={styles.homeLink}>
+          Volver al inicio
+        </Link>
+        <button type="button" className={styles.editBtn} onClick={onEdit}>
+          Editar reservación
+        </button>
+      </div>
     </section>
   );
 }

@@ -106,11 +106,19 @@
   margin: 0;
 }
 
+/* ── Actions row ───────────────────────────────────── */
+
+.actions {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 /* ── Home link ─────────────────────────────────────── */
 
 .homeLink {
-  margin-top: 0.5rem;
-  align-self: flex-start;
   display: inline-block;
   padding: 0.75rem clamp(2rem, 5vw, 3rem);
   border: 1px solid rgba(201, 168, 76, 0.55);
@@ -134,5 +142,33 @@
 
 .homeLink:focus-visible {
   outline: 2px solid var(--color-gold);
+  outline-offset: 4px;
+}
+
+/* ── Edit button ───────────────────────────────────── */
+
+.editBtn {
+  display: inline-block;
+  padding: 0.75rem clamp(2rem, 5vw, 3rem);
+  border: 1px solid rgba(240, 236, 228, 0.18);
+  background: transparent;
+  color: rgba(240, 236, 228, 0.5);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.5625rem, 0.9vw, 0.6875rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.editBtn:hover {
+  border-color: rgba(240, 236, 228, 0.4);
+  color: rgba(240, 236, 228, 0.85);
+}
+
+.editBtn:focus-visible {
+  outline: 2px solid rgba(240, 236, 228, 0.4);
   outline-offset: 4px;
 }

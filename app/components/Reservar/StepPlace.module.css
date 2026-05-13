@@ -38,6 +38,32 @@
   flex: 1 1 min(100%, 200px);
 }
 
+@media (min-width: 1024px) {
+  .cards {
+    flex-wrap: nowrap;
+  }
+
+  .cardItem {
+    flex-basis: min(100%, 260px);
+  }
+
+  .imageWrapper {
+    aspect-ratio: unset;
+    height: 333px;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    height: 55vh;
+  }
+
+  .imageWrapper {
+    flex: 1;
+    aspect-ratio: unset;
+  }
+}
+
 .card {
   display: flex;
   flex-direction: column;

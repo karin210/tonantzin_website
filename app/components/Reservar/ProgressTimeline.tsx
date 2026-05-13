@@ -10,15 +10,22 @@ type StepDef = {
   key: Step;
   label: string;
   getValue: (d: ReservationData) => string;
+  getShortValue?: (d: ReservationData) => string;
 };
 
 const STEP_DEFS: StepDef[] = [
-  { key: "name", label: "Nombre", getValue: (d) => d.name },
+  {
+    key: "name",
+    label: "Nombre",
+    getValue: (d) => d.name,
+    getShortValue: (d) => d.name.split(" ")[0],
+  },
   {
     key: "guests",
     label: "Personas",
     getValue: (d) =>
       d.guests ? `${d.guests} ${d.guests === 1 ? "comensal" : "comensales"}` : "",
+    getShortValue: (d) => (d.guests ? `${d.guests} pers.` : ""),
   },
   {
     key: "date",
@@ -60,6 +67,7 @@ export default function ProgressTimeline({
           const isCompleted = i < currentIndex;
           const isActive = def.key === currentStep;
           const value = def.getValue(data);
+          const shortValue = def.getShortValue ? def.getShortValue(data) : value;
           const isLast = i === STEP_DEFS.length - 1;
 
           const stepClass = [
@@ -115,7 +123,10 @@ export default function ProgressTimeline({
               <div className={styles.info}>
                 <span className={styles.label}>{def.label}</span>
                 {isCompleted && value && (
-                  <span className={styles.value}>{value}</span>
+                  <span className={styles.value}>
+                    <span className={styles.valueLong}>{value}</span>
+                    <span className={styles.valueShort}>{shortValue}</span>
+                  </span>
                 )}
               </div>
             </li>
