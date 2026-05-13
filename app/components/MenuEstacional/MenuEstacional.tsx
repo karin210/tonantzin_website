@@ -108,63 +108,58 @@ export default function MenuEstacional(): React.JSX.Element {
       </div>
 
       <div className={styles.body}>
-        <aside className={styles.aside} aria-labelledby="recomendacion-title">
-          <div className={styles.featuredCard}>
-            <div className={styles.featuredImageWrapper}>
-              <Image
-                src="/pulpo.jpg"
-                alt="Pulpo a la Plancha — platillo recomendado por el chef"
-                fill
-                sizes="(min-width: 1024px) 22rem, 100vw"
-                style={{ objectFit: "cover" }}
-              />
-              <span className={styles.featuredBadge} aria-hidden="true">
-                Recomendación del chef
+        <aside className={styles.featuredCard}>
+          <div className={styles.featuredImageWrapper}>
+            <Image
+              src="/pulpo.jpg"
+              alt="Pulpo a la Plancha — platillo recomendado por el chef"
+              fill
+              sizes="(min-width: 1024px) 22rem, 100vw"
+              style={{ objectFit: "cover" }}
+            />
+            <span className={styles.featuredBadge} aria-hidden="true">
+              Recomendación del chef
+            </span>
+          </div>
+          <div className={styles.featuredInfo}>
+            <div className={styles.cardHeader}>
+              <span
+                className={`${styles.tag} ${CATEGORY_CLASS[FEATURED.category]}`}
+              >
+                {FEATURED.category}
+              </span>
+              <span
+                className={styles.price}
+                aria-label={`Precio: ${FEATURED.price}`}
+              >
+                {FEATURED.price}
               </span>
             </div>
-            <div className={styles.featuredInfo}>
-              <div className={styles.cardHeader}>
-                <span
-                  className={`${styles.tag} ${CATEGORY_CLASS[FEATURED.category]}`}
-                >
-                  {FEATURED.category}
-                </span>
-                <span
-                  className={styles.price}
-                  aria-label={`Precio: ${FEATURED.price}`}
-                >
-                  {FEATURED.price}
-                </span>
-              </div>
-              <h3 id="recomendacion-title" className={styles.dishName}>
-                {FEATURED.name}
-              </h3>
-              <p className={styles.dishDescription}>{FEATURED.description}</p>
-            </div>
+            <h3 id="recomendacion-title" className={styles.dishName}>
+              {FEATURED.name}
+            </h3>
+            <p className={styles.dishDescription}>{FEATURED.description}</p>
           </div>
+        </aside>
 
-          <div className={styles.favorites}>
-            <h4 className={styles.favoritesTitle}>Platillos favoritos</h4>
-            <ul
-              className={styles.favoritesList}
-              aria-label="Platillos favoritos"
-            >
-              {FAVORITES.map((dish) => (
-                <li key={dish.name} className={styles.favoriteItem}>
-                  <div className={styles.favoriteHeader}>
-                    <h5 className={styles.favoriteName}>{dish.name}</h5>
-                    <span
-                      className={styles.price}
-                      aria-label={`Precio: ${dish.price}`}
-                    >
-                      {dish.price}
-                    </span>
-                  </div>
-                  <p className={styles.dishDescription}>{dish.description}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <aside className={styles.favorites}>
+          <h4 className={styles.favoritesTitle}>Platillos favoritos</h4>
+          <ul className={styles.favoritesList} aria-label="Platillos favoritos">
+            {FAVORITES.map((dish) => (
+              <li key={dish.name} className={styles.favoriteItem}>
+                <div className={styles.favoriteHeader}>
+                  <h5 className={styles.favoriteName}>{dish.name}</h5>
+                  <span
+                    className={styles.price}
+                    aria-label={`Precio: ${dish.price}`}
+                  >
+                    {dish.price}
+                  </span>
+                </div>
+                <p className={styles.dishDescription}>{dish.description}</p>
+              </li>
+            ))}
+          </ul>
         </aside>
       </div>
 

@@ -1,8 +1,13 @@
 /* ── Section ──────────────────────────────────────── */
 
 .section {
-  padding: clamp(4rem, 10vw, 8rem) clamp(1.25rem, 5vw, 4rem);
-  background: #1c1712;
+  padding-block: clamp(4rem, 10vw, 8rem);
+  background: radial-gradient(
+    130% 60% at 50% 0px,
+    rgb(84 42 0) 0%,
+    rgb(37, 19, 9) 55%,
+    rgb(28, 23, 18) 100%
+  );
   color: #f0ece4;
 }
 
@@ -48,8 +53,14 @@
 /* ── Body layout (grid + aside) ───────────────────── */
 
 .body {
-  display: grid;
-  margin: 0 auto;
+  width: 100vw;
+  box-sizing: border-box;
+  padding: clamp(1rem, 5vw, 3rem) clamp(1.5rem, 10vw, 8rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  justify-content: center;
+  align-items: flex-start;
 }
 
 /* ── Category tag ─────────────────────────────────── */
@@ -113,12 +124,12 @@
 .aside {
   display: flex;
   justify-content: center;
-  margin: 0 auto;
 }
 
 /* ── Featured card ────────────────────────────────── */
 
 .featuredCard {
+  flex: 1 1 min(100%, 22rem);
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(201, 168, 76, 0.2);
@@ -161,6 +172,7 @@
 /* ── Platillos favoritos ──────────────────────────── */
 
 .favorites {
+  flex: 1 1 min(100%, 22rem);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
