@@ -16,6 +16,14 @@ Added a lightweight demo-mode behaviour so that non-functional links in the site
 
 ---
 
+## 2026-05-14 (2)
+
+### StepPlace — interior image swap + description removal
+
+Replaced the interior card image from `adobe_wall_1.jpg` to `interior_vertical_2.jpg`. Cleared the `description` field on both place options (Terraza and Interior), removing the short subtitle text ("Ambiente al aire libre" / "Salón climatizado") from the cards.
+
+---
+
 ## 2026-05-13
 
 ### StepTime — mobile drum fix

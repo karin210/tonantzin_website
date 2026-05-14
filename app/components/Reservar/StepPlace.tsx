@@ -14,15 +14,15 @@ const OPTIONS: PlaceOption[] = [
   {
     key: "terraza",
     label: "Terraza",
-    description: "Ambiente al aire libre",
+    description: "",
     src: "/Tonantzin_terraza_1_horizontal.jpg",
     alt: "Terraza de Tonantzin Cocina Mestiza, mesas al aire libre iluminadas con luces cálidas",
   },
   {
     key: "interior",
     label: "Interior",
-    description: "Salón climatizado",
-    src: "/adobe_wall_1.jpg",
+    description: "",
+    src: "/interior_vertical_2.jpg",
     alt: "Interior del restaurante Tonantzin, paredes de adobe con iluminación acogedora",
   },
 ];
