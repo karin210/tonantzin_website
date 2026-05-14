@@ -2,6 +2,20 @@
 
 ---
 
+## 2026-05-14
+
+### Demo mode — "Página no disponible" toast
+
+Added a lightweight demo-mode behaviour so that non-functional links in the site show a small non-blocking toast rather than navigating or reloading.
+
+**`DemoToast` component.** A `"use client"` component mounted once in `app/layout.tsx`. It listens for a `demo:unavailable` CustomEvent on `document` and renders a fixed-position pill at the bottom-centre of the viewport for 2.5 seconds, then disappears. Rapid repeated clicks reset the timer. Styled to match the site palette: dark warm background (`#1c1712`), cream text, a faint gold border. A subtle fade-in + upward translate animation on mount. Uses `role="status"` and `aria-live="polite"` for screen-reader announcements. `pointer-events: none` so it never blocks interaction.
+
+**Header — intercepted nav links.** Added a `demoClick` handler inside `Header.tsx` that calls `e.preventDefault()`, `closeAll()`, and dispatches `demo:unavailable`. Applied to: **Menú**, **Nosotros**, **Trabaja con nosotros**, and all three Servicios sub-links (**Sala de Juntas**, **Eventos Privados**, **Actividades**). The Servicios dropdown trigger still expands/collapses normally. **Reservaciones** and the logo link are untouched.
+
+**`DemoCtaButton` component.** A minimal `"use client"` wrapper needed because `MenuEstacional` is a Server Component and cannot hold a click handler. Accepts `className` and `children`; on click calls `e.preventDefault()` and dispatches `demo:unavailable`. Replaces the `<a href="/menu">` "Ver Menú Completo" anchor. Added `background: transparent; cursor: pointer` to `.ctaButton` in `MenuEstacional.module.css` to reset browser default button styles.
+
+---
+
 ## 2026-05-13
 
 ### StepTime — mobile drum fix

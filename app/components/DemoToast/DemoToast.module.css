@@ -1,0 +1,23 @@
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 500;
+  background: #1c1712;
+  color: #f0ece4;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  padding: 0.65rem 1.5rem;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  white-space: nowrap;
+  pointer-events: none;
+  margin: 0;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(4px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}

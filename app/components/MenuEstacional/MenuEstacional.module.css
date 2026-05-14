@@ -239,6 +239,8 @@
 
 .ctaButton {
   display: inline-block;
+  background: transparent;
+  cursor: pointer;
   padding: 0.875rem clamp(2rem, 5vw, 3.5rem);
   border: 1px solid rgba(201, 168, 76, 0.6);
   color: var(--color-gold);

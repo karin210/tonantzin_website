@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./MenuEstacional.module.css";
+import DemoCtaButton from "./DemoCtaButton";
 
 type Category = "Entrada" | "Plato Fuerte" | "Postre";
 
@@ -23,23 +24,23 @@ const DISHES: readonly Dish[] = [
     category: "Entrada",
     name: "Tlayuda Negra",
     description:
-      "Totopos de maíz negro, frijoles refritos, tasajo de Oaxaca, quesillo y hoja santa fresca.",
+      "Totopos de maíz negro, frijoles refritos, tasajo de Oaxaca, quesillo y hoja santa fresca",
     price: "$185",
   },
   {
-    id: "pato-mole-negro",
+    id: "cannellonis",
     category: "Plato Fuerte",
-    name: "Pato en Mole Negro",
+    name: "Cannellonis",
     description:
-      "Pato confitado bañado en mole negro de temporada, arroz rojo y plátano macho asado.",
-    price: "$420",
+      "Rollitos de pasta rellenos de carne en salsa pomodoro, gratinados con queso mozarella",
+    price: "$260",
   },
   {
-    id: "camarones-mole-amarillo",
+    id: "pechuga-parmesana",
     category: "Plato Fuerte",
-    name: "Camarones en Mole Amarillo",
+    name: "Pechuga Parmesana",
     description:
-      "Camarón de altamar, chayote, ejotes tiernos y chepiche en mole amarillo oaxaqueño.",
+      "Empanizada crujiente bañada en salsa de chipotle acompañada con espárragos",
     price: "$385",
   },
   {
@@ -60,29 +61,28 @@ const FEATURED: Readonly<{
 }> = {
   name: "Pulpo a la Plancha",
   description:
-    "Pulpo del Pacífico asado a la plancha, recado negro yucateco, puré de coliflor ahumada y aceite de epazote.",
-  price: "$445",
+    "Pulpo tierno braseado al carbón, con una textura exterior crujiente y un centro suave. Acompañado de papas cambray al romero y un toque de aceite de oliva infusionado con ajo y pimentón ahumado",
+  price: "$350",
   category: "Plato Fuerte",
 };
 
 const FAVORITES: readonly FavoriteDish[] = [
   {
-    name: "Ceviche de Robalo",
+    name: "Pechuga Parmesana",
     description:
-      "Robalo fresco marinado en limón real, pepino, chile serrano y leche de tigre.",
-    price: "$265",
+      "Empanizada crujiente bañada en salsa de chipotle acompañada con espárragos",
+    price: "$240",
   },
   {
-    name: "Chiles en Nogada",
+    name: "Cannellonis",
     description:
-      "Chile poblano relleno de picadillo mestizo, nogada cremosa y granada de temporada.",
-    price: "$395",
+      "Rollitos de pasta rellenos de carne en salsa pomodoro, gratinados con queso mozarella",
+    price: "$260",
   },
   {
-    name: "Costilla en Mole Coloradito",
-    description:
-      "Costilla de res braseada 12 horas en mole coloradito con cilantro criollo.",
-    price: "$460",
+    name: "Raviolis en salsa rosa",
+    description: "Rellenos de queso ricotta",
+    price: "$260",
   },
 ];
 
@@ -164,9 +164,9 @@ export default function MenuEstacional(): React.JSX.Element {
       </div>
 
       <div className={styles.cta}>
-        <a href="/menu" className={styles.ctaButton}>
+        <DemoCtaButton className={styles.ctaButton}>
           Ver Menú Completo
-        </a>
+        </DemoCtaButton>
       </div>
     </section>
   );

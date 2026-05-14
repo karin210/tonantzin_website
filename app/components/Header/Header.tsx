@@ -48,6 +48,12 @@ export default function Header(): React.JSX.Element {
     setDropdownOpen(false);
   };
 
+  const demoClick = (e: React.MouseEvent): void => {
+    e.preventDefault();
+    closeAll();
+    document.dispatchEvent(new CustomEvent("demo:unavailable"));
+  };
+
   return (
     <header className={styles.header}>
       <nav className={styles.nav} aria-label="Navegación principal">
@@ -97,7 +103,7 @@ export default function Header(): React.JSX.Element {
             </Link>
           </li>
           <li>
-            <a href="#menu" onClick={closeAll}>
+            <a href="#menu" onClick={demoClick}>
               Menú
             </a>
           </li>
@@ -120,27 +126,27 @@ export default function Header(): React.JSX.Element {
               role="menu"
             >
               <li role="none">
-                <a role="menuitem" href="#sala-juntas" onClick={closeAll}>
+                <a role="menuitem" href="#sala-juntas" onClick={demoClick}>
                   Sala de Juntas
                 </a>
               </li>
               <li role="none">
-                <a role="menuitem" href="#eventos-privados" onClick={closeAll}>
+                <a role="menuitem" href="#eventos-privados" onClick={demoClick}>
                   Eventos Privados
                 </a>
               </li>
               <li role="none">
-                <a role="menuitem" href="#talleres" onClick={closeAll}>
+                <a role="menuitem" href="#talleres" onClick={demoClick}>
                   Actividades
                 </a>
               </li>
             </ul>
           </li>
-          <a href="#nosotros" onClick={closeAll}>
+          <a href="#nosotros" onClick={demoClick}>
             Nosotros
           </a>
           <li>
-            <a href="#nosotros" onClick={closeAll}>
+            <a href="#nosotros" onClick={demoClick}>
               Trabaja con nosotros
             </a>
           </li>

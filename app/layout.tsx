@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Cormorant_Garamond, Antonio } from "next/font/google";
 import "./globals.css";
+import DemoToast from "./components/DemoToast/DemoToast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,7 +42,10 @@ export default function RootLayout({
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} ${antonio.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <DemoToast />
+      </body>
     </html>
   );
 }
