@@ -59,7 +59,7 @@ const FEATURED: Readonly<{
   price: string;
   category: Category;
 }> = {
-  name: "Pulpo a la Plancha",
+  name: "Pulpo braseado",
   description:
     "Pulpo tierno braseado al carbón, con una textura exterior crujiente y un centro suave. Acompañado de papas cambray al romero y un toque de aceite de oliva infusionado con ajo y pimentón ahumado",
   price: "$350",
