@@ -29,7 +29,7 @@ A fine-dining restaurant website for **Tonantzin Cocina Mestiza**, an upscale Me
 - Palette: earthy tones, deep greens, terracotta, warm neutrals — evoke Mexican heritage
 - Typography: elegant serif for headings, clean sans-serif for body text
 - Imagery: high-quality food and ambiance photography
-- Language: English for code; Spanish for client text since it is intended for a Mexican audience
+- Language: all code must be in English — variable names, function names, type names, CSS class names, constants, and comments; Spanish is reserved exclusively for user-facing text (UI strings, labels, copy) since the site targets a Mexican audience
 - Avoid generic restaurant clichés (clipart food icons, neon colors, busy layouts)
 - Overall vibe: luxe hospitality meets modern artisanal, every detail should feel intentional, tactile, and elevated without being cold or sterile
 
