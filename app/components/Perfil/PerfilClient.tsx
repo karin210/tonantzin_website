@@ -200,9 +200,7 @@ export default function PerfilClient(): React.JSX.Element {
           <input
             className={styles.nameInput}
             value={draft.name}
-            onChange={(e) =>
-              setDraft((p) => ({ ...p, name: e.target.value }))
-            }
+            onChange={(e) => setDraft((p) => ({ ...p, name: e.target.value }))}
             aria-label="Nombre completo"
           />
         ) : (
@@ -446,10 +444,6 @@ export default function PerfilClient(): React.JSX.Element {
               <dd className={styles.fieldValue}>
                 {LAST_RESERVATION.date} · {LAST_RESERVATION.time} hrs
               </dd>
-            </div>
-            <div className={styles.field}>
-              <dt className={styles.fieldLabel}>Mesa</dt>
-              <dd className={styles.fieldValue}>{LAST_RESERVATION.table}</dd>
             </div>
             <div className={styles.field}>
               <dt className={styles.fieldLabel}>Comensales</dt>
