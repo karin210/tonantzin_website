@@ -218,6 +218,36 @@
   outline-offset: -2px;
 }
 
+/* ── Close button (mobile drawer) ─────────────── */
+
+.closeItem {
+  display: none;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  color: var(--color-white);
+  cursor: pointer;
+  padding: 0.5rem;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.closeButton:hover,
+.closeButton:focus-visible {
+  opacity: 1;
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 /* ── Backdrop (mobile) ─────────────────────────── */
 
 .backdrop {
@@ -324,6 +354,16 @@
     width: fit-content;
     padding: 0.6rem 1.4rem;
     margin-top: 0.25rem;
+  }
+
+  .closeItem {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    padding: 0 !important;
+    margin-bottom: 0.5rem;
+    border-bottom: none !important;
   }
 
   .accountItem {

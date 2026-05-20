@@ -97,6 +97,26 @@ export default function Header(): React.JSX.Element {
           id="main-nav-list"
           className={`${styles.navList} ${menuOpen ? styles.navListOpen : ""}`}
         >
+          <li className={styles.closeItem} role="none">
+            <button
+              type="button"
+              className={styles.closeButton}
+              aria-label="Cerrar menú"
+              onClick={closeAll}
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                aria-hidden="true"
+                width="1.25rem"
+                height="1.25rem"
+              >
+                <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" />
+              </svg>
+            </button>
+          </li>
           <li>
             <Link href="/reservar" onClick={closeAll}>
               Reservaciones
